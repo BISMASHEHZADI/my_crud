@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+
+{% block bisma %}
+<div class="div row">
+    <div class="div col-sm-6">
+        <h2 class="alert alert-danger text-center"><i>ADD STUDENTS</i></h2>
+    
+    
+<form action="" method="POST">
+    
+    {% csrf_token %}
+    
+    
+    {{form.as_p}}
+    
+    
+    
+    <button type="submit" class='btn btn-warning'>submit</button>
+    
+    
+    
+</form>
+</div>
+
+<div class="div col-sm-6">
+    <h2 class="alert alert-danger text-center"><i>SHOW STUDENTS</i></h2>
+<table class="table">
+<thead>
+<tr>
+    <th>id</th>
+    <th>name</th>
+    <th>email</th>
+    <th>password</th>
+
+</tr>
+
+</thead>
+<tbody>
+    {% for b in stu %}
+      
+<tr>
+       
+<td>{{b.id}}</td>
+<td>{{b.name}}</td>
+<td>{{b.email}}</td>
+<td>{{b.password}}</td>
+<td>
+    <form action="{% url 'delete' b.id %}" method="POST">   
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">delete</button>
+<a href="{% url 'update' b.id %}" class="btn btn-dark">EDIT</a>
+    </form>
+    
+</td>
+
+        </tr>
+        
+        
+
+    
+    {% endfor %}
+
+</tbody>
+
+</table>
+
+
+</div>
+</div>
+
+
+
+
+    
+{% endblock bisma %}
